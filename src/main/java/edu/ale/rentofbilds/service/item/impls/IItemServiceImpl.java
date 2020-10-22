@@ -6,6 +6,7 @@ import edu.ale.rentofbilds.service.item.interfaces.ICRUDItem;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 @Service
 public class IItemServiceImpl implements ICRUDItem {
@@ -13,9 +14,28 @@ public class IItemServiceImpl implements ICRUDItem {
     FakeData data;
 
 
+
     @Override
     public Item create(Item item) {
-        return null;
+        if (item.getId() != null) {
+            this.getAll().add(item);
+        } else {
+
+            Integer id =
+                    this.getAll().stream()
+                            .map(el -> el.getId())
+                            //Айдишники превращаем со Стринга в Интеджер
+                            .mapToInt(el -> Integer.valueOf(el))
+                            //Находим максимальный !!!
+                            .max().orElse(0);
+
+            item.setId(String.valueOf(id+1));
+            LocalDateTime now = LocalDateTime.now();
+            item.setCreated_at(now);
+            item.setModified_at(now);
+            this.getAll().add(item);
+        }
+        return item;
     }
 
     @Override
@@ -25,7 +45,13 @@ public class IItemServiceImpl implements ICRUDItem {
 
     @Override
     public Item update(Item item) {
-        return null;
+        String id = item.getId();
+        Item itemToUpdate = this.getAll().stream().filter(element -> element.getId().equals(id))
+                .findFirst().orElse(null);
+        int index = this.getAll().indexOf(itemToUpdate);
+        item.setModified_at(LocalDateTime.now());
+        this.getAll().set(index, item);
+        return item;
     }
 
     @Override
@@ -34,6 +60,7 @@ public class IItemServiceImpl implements ICRUDItem {
         this.getAll().remove(item);
         return item;
     }
+
 
     @Override
     public List<Item> getAll() {
