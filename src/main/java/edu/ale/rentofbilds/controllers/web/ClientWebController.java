@@ -45,15 +45,38 @@ public class ClientWebController {
 /*        clients.remove(client);*/
         return "redirect:/web/client/list";
     }
-    @RequestMapping("/update/{id}")
-    String editById(@PathVariable("id") String id){
-        return null;
+    @RequestMapping("/edit/{id}")
+    String editById(@PathVariable("id") String id, Model model){
+        Client client = service.get(id);
+        ClientForm form = new ClientForm();
+        form.setName(client.getName());
+        form.setDescription(client.getDescription());
+        model.addAttribute("form", form);
+        return "clientAddForm";
+    }
+
+    @RequestMapping(value = "/edit/{id}", method = RequestMethod.POST)
+    String editById(@ModelAttribute("form") ClientForm form,@PathVariable("id") String id, Model model){
+        Client client = service.get(id);
+        client.setName(form.getName());
+        client.setDescription(form.getDescription());
+        service.update(client);
+        return "redirect:/web/client/list";
     }
 
     @RequestMapping(value = "/create", method = RequestMethod.GET)
-    public String create(@ModelAttribute("form") ClientForm clientForm, Model model) {
-        Client client = new Client();
+    public String create(Model model) {
+        ClientForm clientForm = new ClientForm();
         model.addAttribute("form", clientForm);
+        return "clientAddForm";
+    }
+
+    @RequestMapping(value = "/create", method = RequestMethod.POST)
+    public String create(@ModelAttribute("form") ClientForm form, Model model) {
+       Client client = new Client();
+       client.setName(form.getName());
+       client.setDescription(form.getDescription());
+       service.create(client);
         return "redirect:/web/client/list";
     }
 }

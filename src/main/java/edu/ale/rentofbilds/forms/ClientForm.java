@@ -1,9 +1,9 @@
 package edu.ale.rentofbilds.forms;
 
 public class ClientForm {
-    private String id = " ";
-    private String name = " ";
-    private String description = " ";
+    private String id = "";
+    private String name = "";
+    private String description = "";
     private String created_at = "";
 
     public String getCreated_at() {
