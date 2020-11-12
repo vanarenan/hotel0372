@@ -10,7 +10,10 @@ import org.springframework.stereotype.Service;
 import javax.annotation.PostConstruct;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class CRUDItemIMongoImpl implements ICRUDItem {
 
@@ -58,5 +61,33 @@ public class CRUDItemIMongoImpl implements ICRUDItem {
     public List<Item> getAll() {
 
         return repository.findAll();
+    }
+    public List<Item> getAllSortedByName(){
+        List<Item> list = repository.findAll();
+        List<Item> sorted = list.stream()
+                .sorted(Comparator.comparing(Item::getName))
+                .collect(Collectors.toList());
+        return sorted;
+    }
+    public List<Item> getAllSortedByDescription(){
+        List<Item> list = repository.findAll();
+        List<Item> sorted = list.stream()
+                .sorted(Comparator.comparing(Item::getDescription))
+                .collect(Collectors.toList());
+        return sorted;
+    }
+    public List<Item> getAllSortedByCreated(){
+        List<Item> list = repository.findAll();
+        List<Item> sorted = list.stream()
+                .sorted(Comparator.comparing(Item::getCreated_at))
+                .collect(Collectors.toList());
+        return sorted;
+    }
+    public List<Item> getAllSortedByModified(){
+        List<Item> list = repository.findAll();
+        List<Item> sorted = list.stream()
+                .sorted(Comparator.comparing(Item::getModified_at))
+                .collect(Collectors.toList());
+        return sorted;
     }
 }

@@ -18,10 +18,10 @@
         <thead>
         <tr>
             <th>id</th>
-            <th>Name</th>
-            <th>Description</th>
-            <th>Created</th>
-            <th>Modified</th>
+            <th><button class="btn btn-outline-light" onclick="window.location.href = '/web/client/list/sort/name'">Name </button></th>
+            <th><button class="btn btn-outline-light" onclick="window.location.href = '/web/client/list/sort/name'">Description </button></th>
+            <th><button class="btn btn-outline-light" onclick="window.location.href = '/web/client/list/sort/name'">Created </button></th>
+            <th><button class="btn btn-outline-light" onclick="window.location.href = '/web/client/list/sort/name'">Modified </button></th>
             <th>Delete</th>
             <th>Edit</th>
         </tr>

@@ -14,10 +14,8 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 public class CRUDClientServiceMongoImpl implements ICRUDClientService {
@@ -73,5 +71,32 @@ public class CRUDClientServiceMongoImpl implements ICRUDClientService {
         return repository.findAll();
     }
 
-
+    public List<Client> getAllSortedByName(){
+        List<Client> list = repository.findAll();
+        List<Client> sorted = list.stream()
+                .sorted(Comparator.comparing(Client::getName))
+                .collect(Collectors.toList());
+        return sorted;
+    }
+    public List<Client> getAllSortedByDescription(){
+        List<Client> list = repository.findAll();
+        List<Client> sorted = list.stream()
+                .sorted(Comparator.comparing(Client::getDescription))
+                .collect(Collectors.toList());
+        return sorted;
+    }
+    public List<Client> getAllSortedByCreated(){
+        List<Client> list = repository.findAll();
+        List<Client> sorted = list.stream()
+                .sorted(Comparator.comparing(Client::getCreated_at))
+                .collect(Collectors.toList());
+        return sorted;
+    }
+    public List<Client> getAllSortedByModified(){
+        List<Client> list = repository.findAll();
+        List<Client> sorted = list.stream()
+                .sorted(Comparator.comparing(Client::getModified_at))
+                .collect(Collectors.toList());
+        return sorted;
+    }
 }

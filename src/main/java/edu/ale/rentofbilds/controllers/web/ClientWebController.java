@@ -79,4 +79,24 @@ public class ClientWebController {
        service.create(client);
         return "redirect:/web/client/list";
     }
+    @RequestMapping(value = "/list/sort/name", method = RequestMethod.GET)
+    public String sortedByName(Model model) {
+        model.addAttribute("items", service.getAllSortedByName());
+        return "itemsTable";
+    }
+    @RequestMapping(value = "/list/sort/description", method = RequestMethod.GET)
+    public String sortedByDescription(Model model) {
+        model.addAttribute("items", service.getAllSortedByDescription());
+        return "itemsTable";
+    }
+    @RequestMapping(value = "/list/sort/created", method = RequestMethod.GET)
+    public String sortedByCreated(Model model) {
+        model.addAttribute("items", service.getAllSortedByCreated());
+        return "itemsTable";
+    }
+    @RequestMapping(value = "/list/sort/modified", method = RequestMethod.GET)
+    public String sortedByModified(Model model) {
+        model.addAttribute("items", service.getAllSortedByModified());
+        return "itemsTable";
+    }
 }
