@@ -15,6 +15,7 @@ import java.util.List;
 public class ItemRestController {
     @Autowired
     CRUDItemIMongoImpl service;
+
     @RequestMapping("/all")
     List<Item> getAll() {
         return service.getAll();

@@ -1,10 +1,8 @@
 package edu.ale.rentofbilds.controllers.web;
 
 import edu.ale.rentofbilds.forms.ClientForm;
-import edu.ale.rentofbilds.forms.ItemForm;
+import edu.ale.rentofbilds.forms.SearchForm;
 import edu.ale.rentofbilds.model.Client;
-import edu.ale.rentofbilds.model.Item;
-import edu.ale.rentofbilds.service.client.impls.CRUDClientServiceFakeImpl;
 import edu.ale.rentofbilds.service.client.impls.CRUDClientServiceMongoImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -75,28 +73,44 @@ public class ClientWebController {
     public String create(@ModelAttribute("form") ClientForm form, Model model) {
        Client client = new Client();
        client.setName(form.getName());
+       client.setPassport(form.getPassport());
        client.setDescription(form.getDescription());
        service.create(client);
         return "redirect:/web/client/list";
     }
     @RequestMapping(value = "/list/sort/name", method = RequestMethod.GET)
     public String sortedByName(Model model) {
-        model.addAttribute("items", service.getAllSortedByName());
-        return "itemsTable";
+        model.addAttribute("clients", service.getAllSortedByName());
+        SearchForm search = new SearchForm();
+        model.addAttribute("search", search);
+        return "clientsTable";
+    }
+ @RequestMapping(value = "/list/sort/passport", method = RequestMethod.GET)
+    public String sortedByPassport(Model model) {
+        model.addAttribute("clients", service.getAllSortedByPassport());
+        SearchForm search = new SearchForm();
+        model.addAttribute("search", search);
+        return "clientsTable";
     }
     @RequestMapping(value = "/list/sort/description", method = RequestMethod.GET)
     public String sortedByDescription(Model model) {
-        model.addAttribute("items", service.getAllSortedByDescription());
-        return "itemsTable";
+        model.addAttribute("clients", service.getAllSortedByDescription());
+        SearchForm search = new SearchForm();
+        model.addAttribute("search", search);
+        return "clientsTable";
     }
     @RequestMapping(value = "/list/sort/created", method = RequestMethod.GET)
     public String sortedByCreated(Model model) {
-        model.addAttribute("items", service.getAllSortedByCreated());
-        return "itemsTable";
+        model.addAttribute("clients", service.getAllSortedByCreated());
+        SearchForm search = new SearchForm();
+        model.addAttribute("search", search);
+        return "clientsTable";
     }
     @RequestMapping(value = "/list/sort/modified", method = RequestMethod.GET)
     public String sortedByModified(Model model) {
-        model.addAttribute("items", service.getAllSortedByModified());
-        return "itemsTable";
+        model.addAttribute("clients", service.getAllSortedByModified());
+        SearchForm search = new SearchForm();
+        model.addAttribute("search", search);
+        return "clientsTable";
     }
 }

@@ -12,16 +12,18 @@
 <div>
     <fieldset>
         <legend>Create</legend>
-        <form name="item" action="" method="POST">
+        <form name="record" action="" method="POST">
             Name:<@spring.formInput "form.name" "" "text"/>
             <br>
-            Price:<@spring.formInput "form.price" "" "text"/>
+            Description:<@spring.formInput "form.description" "" "text"/>
             <br>
-            Capacity:<@spring.formInput "form.capacity" "" "text"/>
+            Start:<@spring.formInput "form.start" "" "date"/>
             <br>
-            Type:<@spring.formInput "form.type" "" "text"/>
+            Finish:<@spring.formInput "form.finish" "" "date"/>
             <br>
-            Reservation:<@spring.formInput "form.reservation" "" "text"/>
+            Client:<@spring.formSingleSelect "form.client", clients, ""/>
+            <br>
+            Room:<@spring.formSingleSelect "form.room", rooms, ""/>
             <br>
             <input type="submit" value="Create"/>
         </form>

@@ -78,6 +78,13 @@ public class CRUDClientServiceMongoImpl implements ICRUDClientService {
                 .collect(Collectors.toList());
         return sorted;
     }
+  public List<Client> getAllSortedByPassport(){
+        List<Client> list = repository.findAll();
+        List<Client> sorted = list.stream()
+                .sorted(Comparator.comparing(Client::getPassport))
+                .collect(Collectors.toList());
+        return sorted;
+    }
     public List<Client> getAllSortedByDescription(){
         List<Client> list = repository.findAll();
         List<Client> sorted = list.stream()

@@ -26,7 +26,7 @@ public class CRUDItemIMongoImpl implements ICRUDItem {
     private List<Item> list = new ArrayList<>();
 
 
-   // @PostConstruct
+   @PostConstruct
     void init(){
         list = data.getItems();
     repository.saveAll(list);
@@ -69,10 +69,31 @@ public class CRUDItemIMongoImpl implements ICRUDItem {
                 .collect(Collectors.toList());
         return sorted;
     }
-    public List<Item> getAllSortedByDescription(){
+   public List<Item> getAllSortedByPrice(){
         List<Item> list = repository.findAll();
         List<Item> sorted = list.stream()
-                .sorted(Comparator.comparing(Item::getDescription))
+                .sorted(Comparator.comparing(Item::getPrice))
+                .collect(Collectors.toList());
+        return sorted;
+    }
+   public List<Item> getAllSortedByCapacity(){
+        List<Item> list = repository.findAll();
+        List<Item> sorted = list.stream()
+                .sorted(Comparator.comparing(Item::getCapacity))
+                .collect(Collectors.toList());
+        return sorted;
+    }
+   public List<Item> getAllSortedByType(){
+        List<Item> list = repository.findAll();
+        List<Item> sorted = list.stream()
+                .sorted(Comparator.comparing(Item::getType))
+                .collect(Collectors.toList());
+        return sorted;
+    }
+    public List<Item> getAllSortedByReservation(){
+        List<Item> list = repository.findAll();
+        List<Item> sorted = list.stream()
+                .sorted(Comparator.comparing(Item::getReservation))
                 .collect(Collectors.toList());
         return sorted;
     }
@@ -89,5 +110,10 @@ public class CRUDItemIMongoImpl implements ICRUDItem {
                 .sorted(Comparator.comparing(Item::getModified_at))
                 .collect(Collectors.toList());
         return sorted;
+    }
+
+    public List<Item> getByName(String name) {
+        if (name.equals(""))return  this.getAll();
+        return this.getAll().stream().filter(item -> item.getName().contains(name)).collect(Collectors.toList());
     }
 }

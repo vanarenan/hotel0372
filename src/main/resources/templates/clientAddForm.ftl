@@ -15,6 +15,8 @@
         <form name="client" action="" method="POST">
             Name:<@spring.formInput "form.name" "" "text"/>
             <br>
+            Passport:<@spring.formInput "form.passport" "" "text"/>
+            <br>
             Description:<@spring.formInput "form.description" "" "text"/>
             <br>
             <input type="submit" value="Create"/>

@@ -8,18 +8,28 @@
     <link rel="stylesheet"
           type="text/css" href="<@spring.url '/css/style.css'/>"/>
 </head>
+<a href="/index.html"  class="btn btn-danger">⇐</a><br>
 <body>
 
 <h3>Item List</h3>
 <br>
+<form name="Search" action="" method="post">
+    Search:<@spring.formInput "search.name" "" "text"/>
+    <input type="submit" value="Find"/>
+    <br>
+</form>
+<br>
 <div>
-    <a href="/web/item/create"  class="btn btn-warning">Create</a><br>
+    <a href="/web/item/create"  class="btn btn-warning">Create</a>
     <table class="table table-hover table-dark">
         <thead>
         <tr>
             <th>id</th>
             <th><button class="btn btn-outline-light" onclick="window.location.href = '/web/item/all/sort/name'">Name </button></th>
-            <th><button class="btn btn-outline-light" onclick="window.location.href = '/web/item/all/sort/description'">Description </button></th>
+           <th><button class="btn btn-outline-light" onclick="window.location.href = '/web/item/all/sort/price'">Price </button></th>
+           <th><button class="btn btn-outline-light" onclick="window.location.href = '/web/item/all/sort/capacity'">Capacity </button></th>
+           <th><button class="btn btn-outline-light" onclick="window.location.href = '/web/item/all/sort/type'">Type </button></th>>
+            <th><button class="btn btn-outline-light" onclick="window.location.href = '/web/item/all/sort/reservation'">Reservation </button></th>
             <th><button class="btn btn-outline-light" onclick="window.location.href = '/web/item/all/sort/created'">Created </button></th>
             <th><button class="btn btn-outline-light" onclick="window.location.href = '/web/item/all/sort/modified'">Modified </button></th>
             <th>Delete</th>
@@ -36,7 +46,10 @@
             <tr>
                 <td>${element.id}</td>
                 <td>${element.name}</td>
-                <td>${element.description}</td>
+                <td>${element.price}</td>
+                <td>${element.capacity}</td>
+                <td>${element.type}</td>
+                <td>${element.reservation}</td>
                 <td>${element.created_at}</td>
                 <td>${element.modified_at}</td>
                 <td><a href="/web/item/delete/${element.id}" class="btn btn-outline-danger">Delete</a></td>
