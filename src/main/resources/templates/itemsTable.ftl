@@ -11,7 +11,7 @@
 <a href="/index.html"  class="btn btn-danger">⇐</a><br>
 <body>
 
-<h3>Item List</h3>
+<h3>Room List</h3>
 <br>
 <form name="Search" action="" method="post">
     Search:<@spring.formInput "search.name" "" "text"/>
