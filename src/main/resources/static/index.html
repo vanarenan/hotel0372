@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
@@ -9,17 +10,13 @@
 </head>
 
 <body background="https://i.redd.it/dr5cbbya3md01.jpg">
-<h1>HOTEL</h1>
-<button class="butt1" onclick="window.location.href = '/web/item/all'">Rooms</button>
-<!--<button class="butt1" onclick="window.location.href = '/api/client/list'">API Clients</button>--><br>
-<button class="butt1" onclick="window.location.href = '/web/client/list'">Clients</button><br>
-<button class="butt1" onclick="window.location.href = '/web/record/list'">Records</button>
-<!--<button class="butt1" onclick="window.location.href = '/api/item/all'">API Items</button>-->
-
-
-<!--<a href="/api/item/all">Rest API items</a><br>
-<a href="/web/item/all" style="color: brown">Table item</a><br>
-<a href="/api/client/list" style="color: green">REST API Client</a><br>
-<a href="/web/client/list" style="color: mediumblue">Table Client</a>-->
+<!--<h1>HOTEL</h1>-->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <button class="btn btn-primary" onclick="window.location.href = '/web/item/all'">Rooms</button>
+    &nbsp;
+    <button class="btn btn-primary" onclick="window.location.href = '/web/client/list'">Clients</button>
+    &nbsp;
+    <button class="btn btn-primary" onclick="window.location.href = '/web/record/list'">Check-in</button>
+</nav>
 </body>
 </html>
