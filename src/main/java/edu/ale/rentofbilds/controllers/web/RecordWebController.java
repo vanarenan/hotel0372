@@ -57,10 +57,10 @@ public class RecordWebController {
 
     @RequestMapping(value = "/create", method = RequestMethod.GET)
     public String create(Model model) {
-        List<String> clients = clientServiceMongo.getAll().stream()
-                .map(Client::getName).collect(Collectors.toList());
         RecordForm recordForm = new RecordForm();
         model.addAttribute("form", recordForm);
+        List<String> clients = clientServiceMongo.getAll().stream()
+                .map(Client::getName).collect(Collectors.toList());
         model.addAttribute("clients", clients);
         List<String> rooms = fakeData.getRooms().stream()
                 .map(Room::getName).collect(Collectors.toList());
@@ -76,8 +76,8 @@ public class RecordWebController {
         Room room = fakeData.getRooms().stream()
                 .filter(el -> el.getName().equals(form.getRoom())).findFirst().orElse(null);
         record.setRoom(room);
-        record.setStart(LocalDate.parse(form.getStart()).atTime(0,0,0));
-        record.setFinish(LocalDate.parse(form.getFinish()).atTime(0,0,0));
+        record.setStart(LocalDate.parse(form.getStart()));
+        record.setFinish(LocalDate.parse(form.getFinish()));
         record.setDescription(form.getDescription());
         Client client = clientServiceMongo.getAll().stream().filter(el -> el.getName()
                 .equals(form.getClient())).findFirst().orElse(null);
@@ -92,17 +92,36 @@ public class RecordWebController {
         Record record = service.get(id);
         RecordForm recordForm = new RecordForm();
         recordForm.setId(record.getId());
-        recordForm.setName(record.getName());
+        List<String> rooms = fakeData.getRooms().stream()
+                .map(Room::getName).collect(Collectors.toList());
+        model.addAttribute("rooms", rooms);
+        List<String> clients = clientServiceMongo.getAll().stream()
+                .map(Client::getName).collect(Collectors.toList());
+        model.addAttribute("clients", clients);
+        recordForm.setClient(record.getClient().getName());
+        recordForm.setRoom(record.getRoom().getName());
+        recordForm.setStart(record.getStart().toString());
+        recordForm.setFinish(record.getFinish().toString());
+        recordForm.setModified_at(record.getModified_at().toString());
+        recordForm.setCreated_at(record.getCreated_at().toString());
+        recordForm.setModified_at(record.getModified_at().toString());
         recordForm.setDescription(record.getDescription());
-       /* recordForm.setCreated_at(record.getCreated_at().toString());
-        recordForm.setModified_at(record.getModified_at().toString());*/
         model.addAttribute("form", recordForm);
         return "updateRecord";
     }
+
     @RequestMapping(value = "/update/{id}", method = RequestMethod.POST)
     public String update(Model model, @PathVariable("id") String id, @ModelAttribute("form") RecordForm form) {
         Record record = service.get(id);
-        record.setName(form.getName());
+        record.setId(form.getId());
+        Room room = fakeData.getRooms().stream()
+                .filter(el -> el.getName().equals(form.getRoom())).findFirst().orElse(null);
+        record.setRoom(room);
+        Client client = clientServiceMongo.getAll().stream().filter(el -> el.getName()
+                .equals(form.getClient())).findFirst().orElse(null);
+        record.setClient(client);
+        record.setStart(LocalDate.parse(form.getStart()));
+        record.setFinish(LocalDate.parse(form.getFinish()));
         record.setDescription(form.getDescription());
         service.update(record);
         return "redirect:/web/record/list";

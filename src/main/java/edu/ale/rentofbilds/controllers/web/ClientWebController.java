@@ -50,11 +50,11 @@ public class ClientWebController {
         form.setName(client.getName());
         form.setDescription(client.getDescription());
         model.addAttribute("form", form);
-        return "clientAddForm";
+        return "updateClient";
     }
 
     @RequestMapping(value = "/edit/{id}", method = RequestMethod.POST)
-    String editById(@ModelAttribute("form") ClientForm form,@PathVariable("id") String id, Model model){
+    String editById(@ModelAttribute("form") ClientForm form, @PathVariable("id") String id, Model model){
         Client client = service.get(id);
         client.setName(form.getName());
         client.setDescription(form.getDescription());

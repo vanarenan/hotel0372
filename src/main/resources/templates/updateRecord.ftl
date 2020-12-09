@@ -12,16 +12,16 @@
 <div>
     <fieldset>
         <legend>Update</legend>
-        <form name="item" action="" method="POST">
-            Name:<@spring.formInput "form.name" "" "text"/>
+        <form name="record" action="" method="POST">
+            Client:<@spring.formSingleSelect "form.client", clients, ""/>
             <br>
-            Price:<@spring.formInput "form.price" "" "text"/>
+            Room:<@spring.formSingleSelect "form.room", rooms, ""/>
             <br>
-            Capacity:<@spring.formInput "form.capacity" "" "text"/>
+            Start:<@spring.formInput "form.start" "" "date"/>
             <br>
-            Type:<@spring.formInput "form.type" "" "text"/>
+            Finish:<@spring.formInput "form.finish" "" "date"/>
             <br>
-            Reservation:<@spring.formInput "form.reservation" "" "text"/>
+            Description:<@spring.formInput "form.description" "" "text"/>
             <br>
             <input type="submit" value="Update"/>
         </form>

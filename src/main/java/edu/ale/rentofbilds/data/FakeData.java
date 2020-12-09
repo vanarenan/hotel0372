@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import javax.annotation.PostConstruct;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -65,8 +66,8 @@ public class FakeData {
     ).collect(Collectors.toList());
 
     private List<Record> records = Stream.of(
-            new Record("1", "rec1", "desc1", LocalDateTime.now(), LocalDateTime.now(), clients.get(0), rooms.get(0), LocalDateTime.now(), LocalDateTime.now()),
-            new Record("2", "rec1", "desc1", LocalDateTime.now(), LocalDateTime.now(), clients.get(0), rooms.get(0), LocalDateTime.now(), LocalDateTime.now())
+            new Record("1", "rec1", "desc1", LocalDate.now(), LocalDate.now(), clients.get(0), rooms.get(0), LocalDateTime.now(), LocalDateTime.now()),
+            new Record("2", "rec1", "desc1", LocalDate.now(), LocalDate.now(), clients.get(0), rooms.get(0), LocalDateTime.now(), LocalDateTime.now())
     ).collect(Collectors.toList());
 
     public List<Client> getClients() {

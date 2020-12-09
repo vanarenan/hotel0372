@@ -28,7 +28,7 @@
             <th><button class="btn btn-outline-light" onclick="window.location.href = '/web/item/all/sort/name'">Name </button></th>
            <th><button class="btn btn-outline-light" onclick="window.location.href = '/web/item/all/sort/price'">Price </button></th>
            <th><button class="btn btn-outline-light" onclick="window.location.href = '/web/item/all/sort/capacity'">Capacity </button></th>
-           <th><button class="btn btn-outline-light" onclick="window.location.href = '/web/item/all/sort/type'">Type </button></th>>
+           <th><button class="btn btn-outline-light" onclick="window.location.href = '/web/item/all/sort/type'">Type </button></th>
             <th><button class="btn btn-outline-light" onclick="window.location.href = '/web/item/all/sort/reservation'">Reservation </button></th>
             <th><button class="btn btn-outline-light" onclick="window.location.href = '/web/item/all/sort/created'">Created </button></th>
             <th><button class="btn btn-outline-light" onclick="window.location.href = '/web/item/all/sort/modified'">Modified </button></th>
@@ -37,12 +37,7 @@
         </tr>
         </thead>
         <tbody>
-        <#list items as element> <!--Цикл по всем element !! -->
-            <!--Для каждого element в списке items , который мы получили
-             из контроллера . -----------------------------
-             Формируем строку <tr>. У этой строки есть ..5.. ячеек
-              Каждая ичейка является полем ..елемента.. !
-              (id)(name) т.д !!! -->
+        <#list items as element>
             <tr>
                 <td>${element.id}</td>
                 <td>${element.name}</td>

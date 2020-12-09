@@ -3,6 +3,7 @@ package edu.ale.rentofbilds.forms;
 import edu.ale.rentofbilds.model.Client;
 import edu.ale.rentofbilds.model.Room;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class RecordForm {

@@ -3,6 +3,7 @@ package edu.ale.rentofbilds.model;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
@@ -12,8 +13,8 @@ public class Record {
     private String id;
     private String name;
     private String description;
-    private LocalDateTime start;
-    private LocalDateTime finish;
+    private LocalDate start;
+    private LocalDate finish;
     private Client client;
     private Room room;
     private LocalDateTime created_at;
@@ -22,7 +23,7 @@ public class Record {
     public Record() {
     }
 
-    public Record(String id, String name, String description, LocalDateTime start, LocalDateTime finish, Client client, Room room, LocalDateTime created_at, LocalDateTime modified_at) {
+    public Record(String id, String name, String description, LocalDate start, LocalDate finish, Client client, Room room, LocalDateTime created_at, LocalDateTime modified_at) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -34,7 +35,7 @@ public class Record {
         this.modified_at = modified_at;
     }
 
-    public Record(String name, String description, LocalDateTime start, LocalDateTime finish, Client client, Room room) {
+    public Record(String name, String description, LocalDate start, LocalDate finish, Client client, Room room) {
         this.name = name;
         this.description = description;
         this.start = start;
@@ -67,19 +68,19 @@ public class Record {
         this.description = description;
     }
 
-    public LocalDateTime getStart() {
+    public LocalDate getStart() {
         return start;
     }
 
-    public void setStart(LocalDateTime start) {
+    public void setStart(LocalDate start) {
         this.start = start;
     }
 
-    public LocalDateTime getFinish() {
+    public LocalDate getFinish() {
         return finish;
     }
 
-    public void setFinish(LocalDateTime finish) {
+    public void setFinish(LocalDate finish) {
         this.finish = finish;
     }
 

@@ -27,12 +27,12 @@ public class ServiceRecordMongoImpls implements ICRUDRecord {
 
     @Override
     public Record get(String id) {
-        return null;
+        return repository.findById(id).get();
     }
 
     @Override
     public Record update(Record record) {
-        return null;
+        return repository.save(record);
     }
 
     @Override
